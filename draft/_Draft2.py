@@ -1,50 +1,51 @@
-from goldsberry._masterclass import *
-from goldsberry._apiparams import *
+from goldsberry.masterclass import NbaDataProvider
+from goldsberry.apiparams import *
 
-class anthro(NBA_datapull):
-    def __init__(self):
-        NBA_datapull.__init__(self)
-        self.SET_parameters(**p_draft)
-        self._url_modifier = 'draftcombineplayeranthro'
-        self.GET_raw_data()
-    def data(self):
-        return self._get_table_from_data(self._datatables, 0)
 
-class agility(NBA_datapull):
+class anthro(NbaDataProvider):
     def __init__(self):
-        NBA_datapull.__init__(self)
-        self.SET_parameters(**p_draft)
-        self._url_modifier = 'draftcombinedrillresults'
-        self.GET_raw_data()
-    def data(self):
-        return self._get_table_from_data(self._datatables, 0)
+        url_modifier = 'draftcombineplayeranthro'
+        NbaDataProvider.__init__(self, url_modifier=url_modifier, default_params=p_draft)
 
-class non_stationary_shooting(NBA_datapull):
-    def __init__(self):
-        NBA_datapull.__init__(self)
-        self.SET_parameters(**p_draft)
-        self._url_modifier = 'draftcombinenonstationaryshooting'
-        self.GET_raw_data()
     def data(self):
-        return self._get_table_from_data(self._datatables, 0)
+        return self.get_table_from_data(self.data_tables, 0)
 
-class spot_up_shooting(NBA_datapull):
-    def __init__(self):
-        NBA_datapull.__init__(self)
-        self.SET_parameters(**p_draft)
-        self._url_modifier = 'draftcombinespotshooting'
-        self.GET_raw_data()
-    def data(self):
-        return self._get_table_from_data(self._datatables, 0)
 
-class combine(NBA_datapull):
+class agility(NbaDataProvider):
     def __init__(self):
-        NBA_datapull.__init__(self)
-        self.SET_parameters(**p_draft)
-        self._url_modifier = 'draftcombinestats'
-        self.GET_raw_data()
+        url_modifier = 'draftcombinedrillresults'
+        NbaDataProvider.__init__(self, url_modifier=url_modifier, default_params=p_draft)
+
     def data(self):
-        return self._get_table_from_data(self._datatables, 0)
+        return self.get_table_from_data(self.data_tables, 0)
+
+
+class non_stationary_shooting(NbaDataProvider):
+    def __init__(self):
+        url_modifier = 'draftcombinenonstationaryshooting'
+        NbaDataProvider.__init__(self, url_modifier=url_modifier, default_params=p_draft)
+
+    def data(self):
+        return self.get_table_from_data(self.data_tables, 0)
+
+
+class spot_up_shooting(NbaDataProvider):
+    def __init__(self):
+        url_modifier = 'draftcombinespotshooting'
+        NbaDataProvider.__init__(self, url_modifier=url_modifier, default_params=p_draft)
+
+    def data(self):
+        return self.get_table_from_data(self.data_tables, 0)
+
+
+class combine(NbaDataProvider):
+    def __init__(self):
+        url_modifier = 'draftcombinestats'
+        NbaDataProvider.__init__(self, url_modifier=url_modifier, default_params=p_draft)
+
+    def data(self):
+        return self.get_table_from_data(self.data_tables, 0)
+
 
 __all__ = ['anthro', 'agility', 'non_stationary_shooting', 'spot_up_shooting',
            'combine']
